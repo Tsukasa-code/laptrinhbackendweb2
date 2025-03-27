@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+Nội dung từ branch test_merge
+=======
+Nội dung từ branch test_conflict
+>>>>>>> test_conflict
