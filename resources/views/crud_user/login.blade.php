@@ -23,6 +23,21 @@
                                         <span class="text-danger">{{ $errors->first('password') }}</span>
                                     @endif
                                 </div>
+                                <!-- Thêm trường Address -->
+                                <div class="form-group mb-3">
+                                    <input type="text" placeholder="Address" id="address" class="form-control" name="address">
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @endif
+                                </div>
+
+                                <!-- Thêm trường Phone -->
+                                <div class="form-group mb-3">
+                                    <input type="text" placeholder="Phone" id="phone" class="form-control" name="phone">
+                                    @if ($errors->has('phone'))
+                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                    @endif
+                                </div>
                                 <div class="form-group mb-3">
                                     <div class="checkbox">
                                         <label>
