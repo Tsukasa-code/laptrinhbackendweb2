@@ -1,0 +1,37 @@
+.update-container {
+    background: white;
+    width: 350px;
+    padding: 20px;
+    margin: 50px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.update-container label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.update-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.update-container button {
+    background: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.update-container button:hover {
+    background: darkblue;
+}

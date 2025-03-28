@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết người dùng</title>
+    <link rel="stylesheet" href="css/view.css">
+</head>
+<body>
+    <header>
+        <h2>Lập trình web</h2>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="logout.html">Đăng xuất</a>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <h2>Màn hình chi tiết</h2>
+        <table>
+            <tr>
+                <td><strong>Username</strong></td>
+                <td id="username">test1</td>
+            </tr>
+            <tr>
+                <td><strong>Email</strong></td>
+                <td id="email">test1@gmail.com</td>
+            </tr>
+        </table>
+        <button id="editBtn">Chỉnh sửa</button>
+    </div>
+
+    <footer>
+        <p>Lập trình web @01/2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lấy tham số từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get("user");
+            const email = urlParams.get("email");
+
+            // Cập nhật thông tin hiển thị
+            if (username && email) {
+                document.getElementById("username").textContent = username;
+                document.getElementById("email").textContent = email;
+            }
+
+            // Chuyển hướng đến trang cập nhật
+            document.getElementById("editBtn").addEventListener("click", function() {
+                window.location.href = `update.html?user=${username}&email=${email}`;
+            });
+        });
+    </script>
+    <script src="js/view.js"></script>
+</body>
+</html>

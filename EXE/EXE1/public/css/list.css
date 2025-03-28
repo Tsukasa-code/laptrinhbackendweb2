@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    text-align: center;
+}
+
+.user-list-container {
+    width: 70%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+    margin: 0 5px;
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    margin: 20px 0;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.pagination .active {
+    background: blue;
+    color: white;
+    border-radius: 5px;
+}
