@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Hash;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,8 @@ class CrudUserController extends Controller
      */
     public function login()
     {
-        return view('crud_user.login');
+        // return view('crud_user.login');
+        return view('auth.login');
     }
 
     /**
@@ -47,7 +48,8 @@ class CrudUserController extends Controller
      */
     public function createUser()
     {
-        return view('crud_user.create');
+        // return view('crud_user.create');
+        return view('auth.create');
     }
 
     /**
@@ -59,19 +61,15 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'address' => 'required',
-            'phone' => 'required'
         ]);
-    
+
         $data = $request->all();
         $check = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'address' => $data['address'],
-            'phone' => $data['phone']
+            'password' => Hash::make($data['password'])
         ]);
-    
+
         return redirect("login");
     }
 
@@ -95,6 +93,43 @@ class CrudUserController extends Controller
         return redirect("list")->withSuccess('You have signed-in');
     }
 
+     /**
+     * Form update user page
+     */
+    public function updateInfo(Request $request)
+    {
+        $user_id = $request->get('id');
+        $user = User::find($user_id);
+
+        // return view('crud_user.update', ['user' => $user]);
+        return view('auth.updateinfo', ['user' => $user]);
+    }
+
+    /**
+     * Submit form update info user
+     */
+    public function postUpdateInfo(Request $request)
+    {
+        $input = $request->all();
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,id,'.$input['id'],
+            'password' => 'required|min:6',
+        ]);
+
+       $user = User::find($input['id']);
+       $user->name = $input['name'];
+       $user->email = $input['email'];
+    //    $user->password = $input['password'];
+       $user->diachi = $input['diachi'];
+       $user->sdt = $input['sdt'];
+       $user->save();
+
+        return $input;//redirect("list")->withSuccess('You have signed-in');
+    }
+
+
     /**
      * Form update user page
      */
@@ -103,11 +138,12 @@ class CrudUserController extends Controller
         $user_id = $request->get('id');
         $user = User::find($user_id);
 
-        return view('crud_user.update', ['user' => $user]);
+        // return view('crud_user.update', ['user' => $user]);
+        return view('auth.updatepassword', ['user' => $user]);
     }
 
     /**
-     * Submit form update user
+     * Submit form update pw user
      */
     public function postUpdateUser(Request $request)
     {
@@ -117,16 +153,12 @@ class CrudUserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,id,'.$input['id'],
             'password' => 'required|min:6',
-            'address' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:15',
         ]);
 
        $user = User::find($input['id']);
        $user->name = $input['name'];
        $user->email = $input['email'];
        $user->password = $input['password'];
-       $user->address = $input['address'];
-       $user->phone = $input['phone'];
        $user->save();
 
         return redirect("list")->withSuccess('You have signed-in');
@@ -137,12 +169,14 @@ class CrudUserController extends Controller
      */
     public function listUser()
     {
-        if(Auth::check()){
-            $users = User::all();
-            return view('crud_user.list', ['users' => $users]);
-        }
+        // if(Auth::check()){
+        //     $users = User::all();
+        //     return view('auth.list', ['users' => $users]);
+           
+        // }
 
-        return redirect("login")->withSuccess('You are not allowed to access');
+        // return redirect("login")->withSuccess('You are not allowed to access');
+        return view('auth.list');
     }
 
     /**
